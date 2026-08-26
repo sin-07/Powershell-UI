@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0d1117;
+  --foreground: #e6edf3;
+  --surface: #161b22;
+  --surface-hover: #21262d;
+  --surface-border: #30363d;
+  --primary: #00f0ff;
+  --primary-hover: #38bdf8;
+  --primary-glow: rgba(0, 240, 255, 0.25);
+  --secondary: #a855f7;
+  --accent: #f59e0b;
+  --muted: #8b949e;
+  --danger: #ff4560;
+  --warning: #facc15;
+  --success: #22c55e;
+  --selection: rgba(0, 240, 255, 0.2);
+  --cursor: #00f0ff;
+}
+
+.theme-cyberpunk {
+  --background: #090a10;
+  --foreground: #f0f6fc;
+  --surface: #121420;
+  --surface-hover: #1c2035;
+  --surface-border: #2e3856;
+  --primary: #00f0ff;
+  --primary-hover: #38bdf8;
+  --primary-glow: rgba(0, 240, 255, 0.35);
+  --secondary: #ff007f;
+  --accent: #ffe600;
+  --muted: #7982a9;
+  --danger: #ff0055;
+  --warning: #facc15;
+  --success: #00ff88;
+  --selection: rgba(255, 0, 127, 0.3);
+  --cursor: #00f0ff;
+}
+
+.theme-tokyonight {
+  --background: #1a1b26;
+  --foreground: #c0caf5;
+  --surface: #24283b;
+  --surface-hover: #2f354f;
+  --surface-border: #414868;
+  --primary: #7aa2f7;
+  --primary-hover: #89b4fa;
+  --primary-glow: rgba(122, 162, 247, 0.25);
+  --secondary: #bb9af7;
+  --accent: #e0af68;
+  --muted: #565f89;
+  --danger: #f7768e;
+  --warning: #e0af68;
+  --success: #9ece6a;
+  --selection: rgba(122, 162, 247, 0.3);
+  --cursor: #c0caf5;
+}
+
+.theme-dracula {
+  --background: #282a36;
+  --foreground: #f8f8f2;
+  --surface: #343746;
+  --surface-hover: #44475a;
+  --surface-border: #6272a4;
+  --primary: #bd93f9;
+  --primary-hover: #caa9fa;
+  --primary-glow: rgba(189, 147, 249, 0.3);
+  --secondary: #ff79c6;
+  --accent: #f1fa8c;
+  --muted: #6272a4;
+  --danger: #ff5555;
+  --warning: #ffb86c;
+  --success: #50fa7b;
+  --selection: rgba(68, 71, 90, 0.6);
+  --cursor: #f8f8f2;
+}
+
+.theme-monokai {
+  --background: #272822;
+  --foreground: #f8f8f2;
+  --surface: #3e3d32;
+  --surface-hover: #49483e;
+  --surface-border: #75715e;
+  --primary: #a6e22e;
+  --primary-hover: #b8f244;
+  --primary-glow: rgba(166, 226, 46, 0.3);
+  --secondary: #ae81ff;
+  --accent: #e6db74;
+  --muted: #75715e;
+  --danger: #f92672;
+  --warning: #fd971f;
+  --success: #a6e22e;
+  --selection: rgba(73, 72, 62, 0.8);
+  --cursor: #f8f8f0;
+}
+
+.theme-synthwave {
+  --background: #241b2f;
+  --foreground: #f92aad;
+  --surface: #2b213a;
+  --surface-hover: #36294a;
+  --surface-border: #4d3a68;
+  --primary: #03edf9;
+  --primary-hover: #38bdf8;
+  --primary-glow: rgba(3, 237, 249, 0.35);
+  --secondary: #ff7edb;
+  --accent: #ffe600;
+  --muted: #84749f;
+  --danger: #fe4450;
+  --warning: #fede5d;
+  --success: #72f1b8;
+  --selection: rgba(254, 68, 80, 0.3);
+  --cursor: #03edf9;
+}
+
+.theme-nord {
+  --background: #2e3440;
+  --foreground: #eceff4;
+  --surface: #3b4252;
+  --surface-hover: #434c5e;
+  --surface-border: #4c566a;
+  --primary: #88c0d0;
+  --primary-hover: #8fbcbb;
+  --primary-glow: rgba(136, 192, 208, 0.3);
+  --secondary: #81a1c1;
+  --accent: #ebcb8b;
+  --muted: #616e88;
+  --danger: #bf616a;
+  --warning: #d08770;
+  --success: #a3be8c;
+  --selection: rgba(67, 76, 94, 0.7);
+  --cursor: #d8dee9;
+}
+
+.theme-oled {
+  --background: #000000;
+  --foreground: #ffffff;
+  --surface: #0a0a0a;
+  --surface-hover: #171717;
+  --surface-border: #262626;
+  --primary: #ffffff;
+  --primary-hover: #e5e5e5;
+  --primary-glow: rgba(255, 255, 255, 0.2);
+  --secondary: #a3a3a3;
+  --accent: #fbbf24;
+  --muted: #737373;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --success: #10b981;
+  --selection: rgba(255, 255, 255, 0.25);
+  --cursor: #ffffff;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow: hidden;
+  user-select: none;
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+::selection {
+  background-color: var(--selection);
+  color: inherit;
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-border);
+  border-radius: 9999px;
+  transition: background 200ms ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Glassmorphic Panel Helper */
+.glass-panel {
+  background: rgba(18, 22, 34, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--surface-border);
+}
+
+/* Terminal Glow Highlight */
+.terminal-glow {
+  box-shadow: 0 0 20px var(--primary-glow);
+}
