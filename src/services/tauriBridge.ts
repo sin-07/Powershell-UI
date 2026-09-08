@@ -51,10 +51,41 @@ export class TauriBridge {
     command: string,
     cwd?: string
   ): Promise<{ stdout: string; stderr: string; exit_code: number }> {
-    return this.invoke<{ stdout: string; stderr: string; exit_code: number }>(
-      "execute_shell_command",
-      { command, cwd }
-    );
+    if (this.isTauri() && window.__TAURI__) {
+      try {
+        return (await window.__TAURI__.invoke("execute_shell_command", { command, cwd })) as {
+          stdout: string;
+          stderr: string;
+          exit_code: number;
+        };
+      } catch (err) {
+        console.error(`Tauri invoke error on execute_shell_command:`, err);
+        throw err;
+      }
+    }
+
+    // When running on Web / Vercel: execute via Cloud API Route
+    if (typeof window !== "undefined" && window.location.protocol.startsWith("http")) {
+      try {
+        const res = await fetch("/api/shell", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ command, cwd }),
+        });
+        if (res.ok) {
+          return (await res.json()) as { stdout: string; stderr: string; exit_code: number };
+        }
+      } catch (err) {
+        console.warn("Cloud execution network error, falling back:", err);
+      }
+    }
+
+    // Fallback simulation for offline desktop preview
+    return {
+      stdout: `[Offline Shell Preview: ${command}]`,
+      stderr: "",
+      exit_code: 0,
+    };
   }
 
   static checkCommandSafety(command: string): SafetyWarning {

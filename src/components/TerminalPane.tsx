@@ -180,13 +180,10 @@ Built-in Commands:
         outputText = `[AASM Assistant]: Suggested Command:\n  dir -l -h | findstr /i "cargo"`;
       } else if (lower === "sysinfo" || lower === "version") {
         outputText = `AASM Shell Pro v1.0.0 [Windows 11 / x86_64]\nActive Session: ${pane.sessionId} | Profile: ${pane.profileId || "default"}\nDirect Win32 Kernel Execution Mode`;
-      } else if (TauriBridge.isTauri()) {
+      } else {
         const res = await TauriBridge.executeShellCommand(trimmed, pane.cwd);
         outputText = res.stderr ? res.stderr : (res.stdout || `Command completed (Exit code: ${res.exit_code})`);
         if (res.exit_code !== 0) isError = true;
-      } else {
-        // Run as external binary (preview simulation)
-        outputText = `[Process executed directly via PATH: ${trimmed}] -> Exit code: 0 (${Math.round(performance.now() - startTime)}ms)`;
       }
 
       setLines((prev) => [
