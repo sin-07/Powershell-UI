@@ -47,6 +47,16 @@ export class TauriBridge {
     return this.invoke<FsItem[]>("fs_list_directory", { path });
   }
 
+  static async executeShellCommand(
+    command: string,
+    cwd?: string
+  ): Promise<{ stdout: string; stderr: string; exit_code: number }> {
+    return this.invoke<{ stdout: string; stderr: string; exit_code: number }>(
+      "execute_shell_command",
+      { command, cwd }
+    );
+  }
+
   static checkCommandSafety(command: string): SafetyWarning {
     const cmd = command.trim().toLowerCase();
     if (
