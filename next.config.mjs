@@ -1,9 +1,11 @@
+const isVercel = Boolean(process.env.VERCEL);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
   output: "export",
-  distDir: "dist",
-  assetPrefix: "./",
+  distDir: isVercel ? undefined : "dist",
+  assetPrefix: isVercel ? undefined : "./",
   images: {
     unoptimized: true,
   },
